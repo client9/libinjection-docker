@@ -1,8 +1,8 @@
 sudo: required
 dist: trusty
+language: generic
 services:
   - docker
-
-before_install:
+script:
   - docker build -t nickg/libinjection-docker .
   - docker ps -a
