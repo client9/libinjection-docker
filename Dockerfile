@@ -4,15 +4,17 @@ MAINTAINER https://github.com/client9/libinjection-docker
 
 # basics needed for libinjection:
 #
-#  musl-dev -  c headers
-#  gcc a compiler
-#  make
-#  python is used to generate some files
-#  git -- not sure why
+# Requirements:
+#  musl-dev - standard c headers
+#  gcc      - a C compiler
+#  make     - used to make some rules although this could be eliminated
+#  python   - used to generate some files
 #
-#  clang is used as double-check and for static analyzer
+# Option items used for testing:
+#  clang     - Another C compiler and for static analyzer
+#  valgrind  - memory checking
 #
-RUN apk update && apk upgrade && apk add musl-dev gcc clang make git python
+RUN apk update && apk upgrade && apk add musl-dev gcc make python clang valgrind
 
 # cppcheck - https://github.com/danmar/cppcheck
 # alpine linux requires -DNO_UNIX_SIGNAL_HANDLING
