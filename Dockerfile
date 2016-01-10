@@ -1,5 +1,6 @@
 # A container for testing libinjection
-FROM golang:1.5.2-alpine
+FROM alpine:3.3
+#golang:1.5.2-alpine
 MAINTAINER https://github.com/client9/libinjection-docker
 
 # basics needed for libinjection:
