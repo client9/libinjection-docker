@@ -29,17 +29,17 @@ RUN apk add --update musl-dev gcc make python clang valgrind
 #   * Installing pcre (8.38-r0)
 #
 ADD https://github.com/danmar/cppcheck/archive/1.72.tar.gz cppcheck-1.72.tar.gz
-RUN apk add --update libc-dev g++ pcre-dev \
+RUN apk add libc-dev g++ pcre-dev \
     && tar -xzf cppcheck-1.72.tar.gz \
     && cd cppcheck-1.72 \
     && g++ -DNO_UNIX_SIGNAL_HANDLING -DHAVE_RULES \
-           -DCFGDIR=\"/usr/share/cppcheck/\" \
+           -DCFGDIR=\"/usr/share/cppcheck/cfg/\" \
            -o cppcheck -std=c++0x \
            -include lib/cxx11emu.h -lpcre -Ilib -Iexternals/tinyxml \
            cli/*.cpp lib/*.cpp externals/tinyxml/*.cpp \
     && mkdir -p /usr/share/cppcheck/ \
-    && cp cfg/* /usr/share/cppcheck/ \
+    && mv cfg /usr/share/cppcheck/cfg \
     && mv cppcheck /usr/bin \
     && rm -rf cppcheck* \
-    && apk del libc-dev g++
-RUN ls -l /var/cache/apk/*
+    && apk del libc-dev g++ \
+    && rm -f /var/cache/apk/*
