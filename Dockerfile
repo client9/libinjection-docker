@@ -15,7 +15,7 @@ MAINTAINER https://github.com/client9/libinjection-docker
 #  clang     - Another C compiler and for static analyzer
 #  valgrind  - memory checking
 #
-RUN apk add --update musl-dev gcc make python clang valgrind
+RUN apk add --update musl-dev gcc make python clang valgrind git
 
 # cppcheck - https://github.com/danmar/cppcheck
 # alpine linux requires -DNO_UNIX_SIGNAL_HANDLING
