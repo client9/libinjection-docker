@@ -11,9 +11,11 @@ MAINTAINER https://github.com/client9/libinjection-docker
 #  make     - used to make some rules although this could be eliminated
 #  python   - used to generate some files
 #
-# Option items used for testing:
+# Option items used for only testing:
 #  clang     - Another C compiler and for static analyzer
 #  valgrind  - memory checking
+#  git       - only used for the coveralls code coverage to get
+#              last commit
 #
 RUN apk add --update musl-dev gcc make python clang valgrind git
 
