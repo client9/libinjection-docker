@@ -21,6 +21,12 @@ RUN apk update && apk upgrade && apk add musl-dev gcc make python clang valgrind
 # something is defining GNUC and causing issues, this
 # chops out that code.  Only used in CLI
 #
+# prce-dev needs to stick around, although I suspect we could optimize
+# since its composed of the follow.  Doubt we need all of them.
+#   * Installing libpcre16 (8.38-r0)
+#   * Installing libpcre32 (8.38-r0)
+#   * Installing pcre (8.38-r0)
+#
 ADD https://github.com/danmar/cppcheck/archive/1.71.tar.gz cppcheck-1.71.tar.gz
 RUN apk add libc-dev g++ pcre-dev \
     && tar -xzf cppcheck-1.71.tar.gz \
@@ -34,4 +40,4 @@ RUN apk add libc-dev g++ pcre-dev \
     && cp cfg/* /usr/share/cppcheck/ \
     && mv cppcheck /usr/bin \
     && rm -rf cppcheck* \
-    && apk del libc-dev g++ pcre-dev
+    && apk del libc-dev g++
