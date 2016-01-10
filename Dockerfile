@@ -15,7 +15,7 @@ MAINTAINER https://github.com/client9/libinjection-docker
 #  clang     - Another C compiler and for static analyzer
 #  valgrind  - memory checking
 #
-RUN apk update && apk upgrade && apk add musl-dev gcc make python clang valgrind
+RUN apk add --update musl-dev gcc make python clang valgrind
 
 # cppcheck - https://github.com/danmar/cppcheck
 # alpine linux requires -DNO_UNIX_SIGNAL_HANDLING
@@ -28,10 +28,10 @@ RUN apk update && apk upgrade && apk add musl-dev gcc make python clang valgrind
 #   * Installing libpcre32 (8.38-r0)
 #   * Installing pcre (8.38-r0)
 #
-ADD https://github.com/danmar/cppcheck/archive/1.71.tar.gz cppcheck-1.71.tar.gz
-RUN apk add libc-dev g++ pcre-dev \
-    && tar -xzf cppcheck-1.71.tar.gz \
-    && cd cppcheck-1.71 \
+ADD https://github.com/danmar/cppcheck/archive/1.72.tar.gz cppcheck-1.72.tar.gz
+RUN apk add --update libc-dev g++ pcre-dev \
+    && tar -xzf cppcheck-1.72.tar.gz \
+    && cd cppcheck-1.72 \
     && g++ -DNO_UNIX_SIGNAL_HANDLING -DHAVE_RULES \
            -DCFGDIR=\"/usr/share/cppcheck/\" \
            -o cppcheck -std=c++0x \
@@ -42,3 +42,4 @@ RUN apk add libc-dev g++ pcre-dev \
     && mv cppcheck /usr/bin \
     && rm -rf cppcheck* \
     && apk del libc-dev g++
+RUN ls -l /var/cache/apk/*
