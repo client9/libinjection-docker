@@ -43,3 +43,11 @@ RUN apk add libc-dev g++ pcre-dev \
     && rm -rf cppcheck* \
     && apk del libc-dev g++ \
     && rm -f /var/cache/apk/*
+
+# Code coverage
+# gcov is already installed above
+# need to export data to coveralls.io
+ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+RUN python ./get-pip.py \
+    && pip --no-cache-dir install cpp-coveralls \
+    && rm get-pip.py
